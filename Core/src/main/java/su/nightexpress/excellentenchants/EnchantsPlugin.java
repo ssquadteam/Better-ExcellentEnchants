@@ -13,7 +13,6 @@ import su.nightexpress.excellentenchants.config.Perms;
 import su.nightexpress.excellentenchants.hook.HookPlugin;
 import su.nightexpress.excellentenchants.hook.impl.PacketEventsHook;
 import su.nightexpress.excellentenchants.hook.impl.PlaceholderHook;
-import su.nightexpress.excellentenchants.hook.impl.ProtocolLibHook;
 import su.nightexpress.excellentenchants.manager.EnchantManager;
 import su.nightexpress.excellentenchants.manager.EnchantProviders;
 import su.nightexpress.excellentenchants.nms.RegistryHack;
@@ -110,11 +109,8 @@ public class EnchantsPlugin extends NightPlugin implements ImprovedCommands {
             if (Plugins.isInstalled(HookPlugin.PACKET_EVENTS)) {
                 PacketEventsHook.setup(this);
             }
-            else if (Plugins.isInstalled(HookPlugin.PROTOCOL_LIB)) {
-                ProtocolLibHook.setup(this);
-            }
             else {
-                this.warn("You need to install " + HookPlugin.PACKET_EVENTS + " or " + HookPlugin.PROTOCOL_LIB + " for enchantment description to work.");
+                this.warn("You need to install " + HookPlugin.PROTOCOL_LIB + " for enchantment description to work.");
             }
         }
 

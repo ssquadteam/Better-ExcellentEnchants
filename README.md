@@ -55,7 +55,7 @@ Provides **75+ vanilla-like** enchantments for your server, where each enchantme
 - [nightcore](https://nightexpressdev.com/nightcore/) - Plugin engine.
 
 **OPTIONAL:**
-- [ProtocolLib](https://ci.dmulloy2.net/job/ProtocolLib/) or [PacketEvents](https://spigotmc.org/resources/80279/) - For dynamic enchant description.
+- [PacketEvents](https://spigotmc.org/resources/80279/) - For dynamic enchant description.
 
 # Donate
 If you like my work or enjoy using my plugins, feel free to [Buy me a coffee](https://ko-fi.com/nightexpress) :) Thank you! 🧡

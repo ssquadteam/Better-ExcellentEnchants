@@ -17,10 +17,6 @@ dependencies:
       load: BEFORE
       required: true
       join-classpath: true
-    ProtocolLib:
-      load: BEFORE
-      required: false
-      join-classpath: true
     packetevents:
       load: BEFORE
       required: false

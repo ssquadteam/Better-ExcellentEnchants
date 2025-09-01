@@ -5,7 +5,6 @@ author: NightExpress
 desciption: 75+ vanilla-like enchantments with seemless integration!
 depend: [ nightcore ]
 softdepend:
-  - ProtocolLib
   - packetevents
   - PlaceholderAPI
   - MythicMobs
