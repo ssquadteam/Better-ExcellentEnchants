@@ -180,7 +180,9 @@ public class EnchantManager extends AbstractManager<EnchantsPlugin> {
 
     private void tickPassiveEnchants() {
         this.getPassiveEnchantEntities().forEach(entity -> {
-            this.handleArmorEnchants(entity, EnchantRegistry.PASSIVE, (item, enchant, level) -> enchant.onTrigger(entity, item, level));
+            this.plugin.runAtEntity(entity, () -> {
+                this.handleArmorEnchants(entity, EnchantRegistry.PASSIVE, (item, enchant, level) -> enchant.onTrigger(entity, item, level));
+            });
         });
     }
 
