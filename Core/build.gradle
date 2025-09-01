@@ -1,9 +1,11 @@
 plugins {
     id 'java'
     id 'com.gradleup.shadow' version '9.0.0'
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
 }
 
 dependencies {
+    paperweight.paperDevBundle("1.21.8-R0.1-SNAPSHOT")
     implementation project(':API')
     implementation project(':NMS')
     implementation project(':MC_1_21_4')
@@ -26,9 +28,24 @@ processResources {
     filesMatching('paper-plugin.yml') { expand(project.parent.properties) }
 }
 
-shadowJar {
+tasks.named('shadowJar') {
     archiveBaseName = rootProject.name
     archiveClassifier = ''
 }
 
-build { dependsOn shadowJar }
+paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.getMOJANG_PRODUCTION()
+
+tasks.named('assemble') { dependsOn tasks.named('reobfJar') }
+
+tasks.named('shadowJar') { finalizedBy tasks.named('reobfJar') }
+
+tasks.register('deliverJars', Copy) {
+    dependsOn tasks.named('reobfJar'), tasks.named('shadowJar')
+    from(layout.buildDirectory.dir('libs')) {
+        include '*-reobf.jar'
+        include "${rootProject.name}-${version}.jar"
+    }
+    into("${rootDir}/target")
+}
+
+tasks.named('build') { finalizedBy tasks.named('deliverJars') }

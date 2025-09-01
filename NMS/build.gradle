@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation project(':API')
-    compileOnly 'org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT'
+    compileOnly 'io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT'
     compileOnly 'org.jetbrains:annotations:24.1.0'
     compileOnly name: 'nightcore-2.7.18', version: '2.7.18'
 }
