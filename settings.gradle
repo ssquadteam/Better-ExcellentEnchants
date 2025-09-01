@@ -1,0 +1,9 @@
+rootProject.name = 'ExcellentEnchants'
+
+include 'API'
+include 'Core'
+include 'NMS'
+include 'MC_1_21_4'
+include 'MC_1_21_5'
+include 'MC_1_21_7'
+include 'MC_1_21_8'

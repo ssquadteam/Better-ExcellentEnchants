@@ -1,0 +1,31 @@
+allprojects {
+    group = 'su.nightexpress.excellentenchants'
+    version = '5.2.1'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+        withSourcesJar()
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { name = 'papermc'; url = 'https://repo.papermc.io/repository/maven-public/' }
+        maven { name = 'dmulloy2-repo'; url = 'https://repo.dmulloy2.net/repository/public/' }
+        maven { name = 'placeholderapi'; url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
+        maven { name = 'lumine-repo'; url = 'https://mvn.lumine.io/repository/maven-public/' }
+        maven { name = 'lumine-snapshot'; url = 'https://mvn.lumine.io/repository/maven-snapshots/' }
+        maven { name = 'codemc-repo'; url = 'https://repo.codemc.io/repository/maven-public/' }
+        maven { name = 'nightexpress-releases'; url = 'https://repo.nightexpressdev.com/releases' }
+        maven { name = 'jitpack'; url = 'https://jitpack.io' }
+        maven { name = 'spigot-snapshots'; url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+        maven { name = 'md_5-releases'; url = 'https://repo.md-5.net/content/repositories/releases/' }
+        maven { name = 'md_5-snapshots'; url = 'https://repo.md-5.net/content/repositories/snapshots/' }
+        flatDir { dirs "$rootDir/libs" }
+    }
+}
