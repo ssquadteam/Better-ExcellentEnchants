@@ -83,7 +83,7 @@ public class ReboundEnchant extends GameEnchantment implements ProtectionEnchant
 
         Vector velocity = entity.getVelocity();
         if (velocity.getY() < 0D) {
-            entity.setVelocity(velocity.setY(power));
+            this.plugin.runAtEntity(entity, () -> entity.setVelocity(velocity.setY(power)));
         }
     }
 }

@@ -42,7 +42,6 @@ tasks.named('shadowJar') { finalizedBy tasks.named('reobfJar') }
 tasks.register('deliverJars', Copy) {
     dependsOn tasks.named('reobfJar'), tasks.named('shadowJar')
     from(layout.buildDirectory.dir('libs')) {
-        include '*-reobf.jar'
         include "${rootProject.name}-${version}.jar"
     }
     into("${rootDir}/target")

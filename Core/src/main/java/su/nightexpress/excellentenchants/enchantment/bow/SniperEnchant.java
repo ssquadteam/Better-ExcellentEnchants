@@ -54,7 +54,7 @@ public class SniperEnchant extends GameEnchantment implements BowEnchant {
 
         Entity entity = event.getProjectile();
         Vector vector = entity.getVelocity();
-        entity.setVelocity(vector.multiply(modifier));
+        this.plugin.runAtEntity(entity, () -> entity.setVelocity(vector.multiply(modifier)));
 
         return true;
     }

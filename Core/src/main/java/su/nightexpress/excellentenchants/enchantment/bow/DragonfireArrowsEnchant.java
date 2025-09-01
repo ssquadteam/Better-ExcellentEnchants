@@ -106,7 +106,7 @@ public class DragonfireArrowsEnchant extends GameEnchantment implements ArrowEnc
 
         ThrownPotion potion = shooter.launchProjectile(ThrownPotion.class);
         potion.setItem(itemStack);
-        this.plugin.runAtEntity(potion, () -> potion.teleport(location));
+        this.plugin.getFoliaScheduler().teleportAsync(potion, location);
 
         AreaEffectCloud cloud = potion.getWorld().spawn(location, AreaEffectCloud.class);
         cloud.clearCustomEffects();

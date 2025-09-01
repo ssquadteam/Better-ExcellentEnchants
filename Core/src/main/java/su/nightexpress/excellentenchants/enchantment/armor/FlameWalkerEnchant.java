@@ -102,7 +102,9 @@ public class FlameWalkerEnchant extends GameEnchantment implements MoveEnchant, 
 
         blocks.forEach(block -> {
             int lifeTime = (int) (Rnd.getDouble(this.getBlockDecayTime(level)) + 1);
-            this.plugin.getEnchantManager().addTickedBlock(block, Material.LAVA, Material.MAGMA_BLOCK, lifeTime);
+            this.plugin.runAtLocation(block.getLocation(), () ->
+                this.plugin.getEnchantManager().addTickedBlock(block, Material.LAVA, Material.MAGMA_BLOCK, lifeTime)
+            );
         });
         return true;
     }
