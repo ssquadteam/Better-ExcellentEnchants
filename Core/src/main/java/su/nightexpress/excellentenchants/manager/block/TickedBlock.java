@@ -35,9 +35,12 @@ public class TickedBlock {
     public void sendDamageInfo(float progress) {
         if (!this.location.isWorldLoaded()) return;
 
-        this.location.getWorld().getPlayers().forEach(player -> {
-            player.sendBlockDamage(this.location, progress, this.sourceId);
-        });
+        World world = this.location.getWorld();
+        if (world != null) {
+            world.getPlayers().forEach(player -> {
+                player.sendBlockDamage(this.location, progress, this.sourceId);
+            });
+        }
     }
 
     public void tick() {

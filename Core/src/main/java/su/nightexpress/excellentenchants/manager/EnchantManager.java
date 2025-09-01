@@ -191,7 +191,7 @@ public class EnchantManager extends AbstractManager<EnchantsPlugin> {
         Set<LivingEntity> entities = new HashSet<>(Players.getOnline());
 
         if (Config.PASSIVE_ENCHANTS_ALLOW_FOR_MOBS.get()) {
-            this.plugin.getServer().getWorlds().forEach(world -> {
+            Bukkit.getWorlds().forEach(world -> {
                 entities.addAll(world.getLivingEntities());
             });
         }
