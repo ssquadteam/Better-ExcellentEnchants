@@ -168,7 +168,8 @@ public class EnchantManager extends AbstractManager<EnchantsPlugin> {
 
     private void tickBlocks() {
         this.tickedBlocks.values().removeIf(tickedBlock -> {
-            tickedBlock.tick();
+            Location location = tickedBlock.getLocation();
+            this.plugin.runAtLocation(location, tickedBlock::tick);
             return tickedBlock.isDead();
         });
     }
@@ -203,7 +204,7 @@ public class EnchantManager extends AbstractManager<EnchantsPlugin> {
         TickedBlock tickedBlock = new TickedBlock(location, origin, lifeTime);
         this.tickedBlocks.put(location, tickedBlock);
 
-        block.setType(transform);
+        this.plugin.runAtLocation(location, () -> block.setType(transform));
     }
 
     public boolean removeTickedBlock(@NotNull Block block) {
@@ -214,7 +215,7 @@ public class EnchantManager extends AbstractManager<EnchantsPlugin> {
         TickedBlock tickedBlock = this.tickedBlocks.remove(location);
         if (tickedBlock == null) return false;
 
-        tickedBlock.restore();
+        this.plugin.runAtLocation(location, tickedBlock::restore);
         return true;
     }
 
@@ -224,7 +225,11 @@ public class EnchantManager extends AbstractManager<EnchantsPlugin> {
 
         this.explosions.put(entity.getUniqueId(), explosion);
 
-        return entity.getWorld().createExplosion(location, power, fire, destroy, entity);
+        final boolean[] result = {false};
+        this.plugin.runAtLocation(location, () -> {
+            result[0] = entity.getWorld().createExplosion(location, power, fire, destroy, entity);
+        });
+        return result[0];
     }
 
     public void handleEnchantExplosion(@NotNull EntityExplodeEvent event, @NotNull LivingEntity entity) {
@@ -233,7 +238,7 @@ public class EnchantManager extends AbstractManager<EnchantsPlugin> {
 
         explosion.handleExplosion(event);
 
-        this.plugin.runTask(task -> this.explosions.remove(entity.getUniqueId()));
+        this.plugin.runAtEntity(entity, () -> this.explosions.remove(entity.getUniqueId()));
     }
 
     public void handleEnchantExplosionDamage(@NotNull EntityDamageByEntityEvent event, @NotNull LivingEntity entity) {

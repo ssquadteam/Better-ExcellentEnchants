@@ -44,7 +44,7 @@ public class GenericListener extends AbstractListener<EnchantsPlugin> {
             EnchantUtils.runInDisabledDisplayUpdate(player, player::updateInventory);
         }
         else if (current == GameMode.CREATIVE) {
-            this.plugin.runTask(task -> player.updateInventory());
+            this.plugin.runAtEntity(player, player::updateInventory);
         }
     }
 
@@ -62,7 +62,7 @@ public class GenericListener extends AbstractListener<EnchantsPlugin> {
     public void onChargesFillOnEnchant(EnchantItemEvent event) {
         if (!Config.isChargesEnabled()) return;
 
-        this.plugin.runTask(task -> {
+        this.plugin.runAtEntity(event.getView().getPlayer(), () -> {
             Inventory inventory = event.getInventory();
 
             ItemStack result = inventory.getItem(0);

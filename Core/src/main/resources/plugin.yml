@@ -11,3 +11,4 @@ softdepend:
   - MythicMobs
 api-version: 1.21
 load: STARTUP
+folia-supported: true

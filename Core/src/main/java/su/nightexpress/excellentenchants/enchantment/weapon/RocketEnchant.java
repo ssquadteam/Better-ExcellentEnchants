@@ -54,8 +54,11 @@ public class RocketEnchant extends GameEnchantment implements AttackEnchant {
             victim.leaveVehicle();
         }
 
-        Firework firework = this.createRocket(victim.getWorld(), victim.getLocation(), level);
-        firework.addPassenger(victim);
+        Location location = victim.getLocation();
+        this.plugin.runAtLocation(location, () -> {
+            Firework firework = this.createRocket(victim.getWorld(), location, level);
+            this.plugin.runAtEntity(victim, () -> firework.addPassenger(victim));
+        });
 
         NightSound.of(Sound.ENTITY_FIREWORK_ROCKET_LAUNCH).play(victim.getLocation());
         return true;

@@ -54,6 +54,11 @@ public class TickedBlock {
         this.sendDamageInfo(this.getProgress());
     }
 
+    @NotNull
+    public Location getLocation() {
+        return this.location;
+    }
+
     public float getProgress() {
         return (float) this.livedTicks / (float) this.lifeTime;
     }
