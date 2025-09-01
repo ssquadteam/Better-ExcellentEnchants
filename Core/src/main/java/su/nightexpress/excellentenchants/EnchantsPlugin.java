@@ -110,7 +110,7 @@ public class EnchantsPlugin extends NightPlugin implements ImprovedCommands {
                 PacketEventsHook.setup(this);
             }
             else {
-                this.warn("You need to install " + HookPlugin.PROTOCOL_LIB + " for enchantment description to work.");
+                this.warn("You need to install " + HookPlugin.PACKET_EVENTS + " for enchantment description to work.");
             }
         }
 
